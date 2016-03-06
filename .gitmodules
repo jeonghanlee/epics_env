@@ -1,7 +1,7 @@
 [submodule "epics-base"]
 	path = epics-base
 	url = https://github.com/epics-base/epics-base.git
-	tag = 3.1.14
+	branch = 3.16
 [submodule "epics-modules/iocStats"]
 	path = epics-modules/iocStats
 	url = https://github.com/epics-modules/iocStats.git
