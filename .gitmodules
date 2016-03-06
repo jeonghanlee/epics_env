@@ -5,21 +5,28 @@
 [submodule "epics-modules/iocStats"]
 	path = epics-modules/iocStats
 	url = https://github.com/epics-modules/iocStats.git
+	branch = master	
 [submodule "epics-modules/asyn"]
 	path = epics-modules/asyn
-	url = https://github.com/epics-modules/asyn.git
+	url = https://github.com/epics-modules/asyn
+	branch = master
 [submodule "epics-modules/modbus"]
 	path = epics-modules/modbus
 	url = https://github.com/epics-modules/modbus
+	branch = master
 [submodule "epics-modules/stream"]
 	path = epics-modules/stream
 	url = https://github.com/epics-modules/stream
+	branch = master
 [submodule "epics-modules/devlib2"]
 	path = epics-modules/devlib2
 	url = https://github.com/epics-modules/devlib2
+	branch = master
 [submodule "epics-modules/autosave"]
 	path = epics-modules/autosave
 	url = https://github.com/epics-modules/autosave
+	branch = master
 [submodule "epics-modules/motor"]
 	path = epics-modules/motor
 	url = https://github.com/epics-modules/motor
+	branch = master
