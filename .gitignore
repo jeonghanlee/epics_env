@@ -1,5 +1,3 @@
-epics-base/
-
 # Object files
 *.o
 *.ko
