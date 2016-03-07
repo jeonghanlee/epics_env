@@ -1,0 +1,2 @@
+EPICS_BASE=$(THE_ROOT_DIR)/epics-base
+IOCSTATS=$(THE_ROOT_DIR)/epics-modules/iocStats
