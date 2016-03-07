@@ -2,6 +2,7 @@
 
 all: RELEASE.local
 	$(MAKE) -C epics-base
+	$(MAKE) -C epics-modules/asyn
 	$(MAKE) -C epics-modules/iocStats
 
 clean:
