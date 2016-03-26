@@ -31,3 +31,22 @@ git submodule update
 ```
 git clone --recursive -b work https://github.com/jeonghanlee/jhlee_ee.git
 ```
+
+# add a submodule
+
+* add it into 
+
+```
+git submodule add https://github.com/epics-modules/busy epics-modules/busy
+```
+
+* modify .gitmodule
+```
+[submodule "epics-modules/busy"]
+	path = epics-modules/busy
+	url = https://github.com/epics-modules/busy
+	branch = master
+	ignore = dirty
+```
+
+* push it to the working branch
