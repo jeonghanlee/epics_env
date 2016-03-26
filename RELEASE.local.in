@@ -1,3 +1,4 @@
 EPICS_BASE=$(THE_ROOT_DIR)/epics-base
-ASYN=$(THE_ROOT_DIR)/epics-modules/asyn
-IOCSTATS=$(THE_ROOT_DIR)/epics-modules/iocStats
+EPICS_MODULES=$(THE_ROOT_DIR)/epics-modules
+ASYN=$(EPICS_MODULES)/asyn
+IOCSTATS=$(EPICS_MODULES)/iocStats

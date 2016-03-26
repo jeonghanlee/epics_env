@@ -38,3 +38,18 @@
 	url = https://github.com/epics-modules/motor
 	branch = master
 	ignore = dirty
+[submodule "epics-modules/sscan"]
+	path = epics-modules/sscan
+	url = https://github.com/epics-modules/sscan
+	branch = master
+	ignore = dirty
+[submodule "epics-modules/busy"]
+	path = epics-modules/busy
+	url = https://github.com/epics-modules/busy
+	branch = master
+	ignore = dirty
+[submodule "epics-modules/mrfioc2"]
+	path = epics-modules/mrfioc2
+	url = https://github.com/epics-modules/mrfioc2
+	branch = master
+	ignore = dirty
