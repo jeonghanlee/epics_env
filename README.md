@@ -50,3 +50,11 @@ git submodule add https://github.com/epics-modules/busy epics-modules/busy
 ```
 
 * push it to the working branch
+
+
+# known problems
+
+* somehow, EPICS_HOST_ARCH returned value has the strange string like debian8. So it is sometimes necessary to set EPICS_HOST_ARCH first
+```
+export EPICS_HOST_ARCH="linux-x86_64"
+```
