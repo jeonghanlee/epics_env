@@ -1,32 +1,55 @@
 [submodule "epics-base"]
 	path = epics-base
 	url = https://github.com/epics-base/epics-base.git
-	branch = 3.16
+	branch = master
+	ignore = dirty
 [submodule "epics-modules/iocStats"]
 	path = epics-modules/iocStats
 	url = https://github.com/epics-modules/iocStats.git
-	branch = master	
+	branch = master
+	ignore = dirty
 [submodule "epics-modules/asyn"]
 	path = epics-modules/asyn
 	url = https://github.com/epics-modules/asyn
 	branch = master
+	ignore = dirty
 [submodule "epics-modules/modbus"]
 	path = epics-modules/modbus
 	url = https://github.com/epics-modules/modbus
 	branch = master
+	ignore = dirty
 [submodule "epics-modules/stream"]
 	path = epics-modules/stream
 	url = https://github.com/epics-modules/stream
 	branch = master
+	ignore = dirty
 [submodule "epics-modules/devlib2"]
 	path = epics-modules/devlib2
 	url = https://github.com/epics-modules/devlib2
 	branch = master
+	ignore = dirty
 [submodule "epics-modules/autosave"]
 	path = epics-modules/autosave
 	url = https://github.com/epics-modules/autosave
 	branch = master
+	ignore = dirty
 [submodule "epics-modules/motor"]
 	path = epics-modules/motor
 	url = https://github.com/epics-modules/motor
 	branch = master
+	ignore = dirty
+[submodule "epics-modules/sscan"]
+	path = epics-modules/sscan
+	url = https://github.com/epics-modules/sscan
+	branch = master
+	ignore = dirty
+[submodule "epics-modules/busy"]
+	path = epics-modules/busy
+	url = https://github.com/epics-modules/busy
+	branch = master
+	ignore = dirty
+[submodule "epics-modules/mrfioc2"]
+	path = epics-modules/mrfioc2
+	url = https://github.com/epics-modules/mrfioc2
+	branch = master
+	ignore = dirty
