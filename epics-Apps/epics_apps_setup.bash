@@ -74,18 +74,12 @@ function git_clone() {
        
     if [[ ! -d ${git_src_dir} ]]; then
 	echo "No git source repository in the expected location ${git_src_dir}"
+	git clone ${git_src_url}/${git_src_name} ${git_src_dir}
     else
 	echo "Old git source repository in the expected location ${git_src_dir}"
-	echo "The old one is renamed to ${git_src_dir}_${SC_LOGDATE}"
-	mv  ${git_src_dir} ${git_src_dir}_${SC_LOGDATE}
+	echo "Keep the old one, please check them manually"
     fi
     
-    # Alwasy fresh cloning ..... in order to workaround any local 
-    # modification in the repository, which was cloned before. 
-    #
-    git clone ${git_src_url}/${git_src_name} ${git_src_top}/${git_src_name}
-    
-
     end_func ${func_name}
 }
 
@@ -211,6 +205,7 @@ EOF
 }
 
 git_select "https://github.com/jeonghanlee" "danfysik-mps8500"
+git_select "https://github.com/jeonghanlee" "gconpi"
 
 exit
 
