@@ -3,7 +3,7 @@
 #  Copyright (c) 2016 Jeong Han Lee
 #  Copyright (c) 2016 European Spallation Source ERIC
 #
-#  The ee_setup.bash is free software: you can redistribute
+#  The program is free software: you can redistribute
 #  it and/or modify it under the terms of the GNU General Public License
 #  as published by the Free Software Foundation, either version 2 of the
 #  License, or any newer version.
@@ -16,7 +16,7 @@
 #  You should have received a copy of the GNU General Public License along with
 #  this program. If not, see https://www.gnu.org/licenses/gpl-2.0.txt
 #
-# Shell  : ee_setup.bash
+
 # Author : Jeong Han Lee
 # email  : jeonghan.lee@gmail.com
 # Date   : 
@@ -50,43 +50,6 @@ function checkstr() {
 	printf "%s : input variable is not defined \n" "${FUNCNAME[*]}"
 	exit 1;
     fi
-}
-
-# Generic : git_clone
-#
-# Required Global Variable
-# - SC_LOGDATE      : Input
-# Required Input Variagles
-# - ${1} : git source top directory
-# - ${2} : git source url
-# - ${3} : git source name
-
-function git_clone() {
-
-    local func_name=${FUNCNAME[*]}
-    local git_src_top=${1}
-    local git_src_url=${2}
-    local git_src_name=${3}
-    local git_src_dir=${git_src_top}/${git_src_name}
-    
-    ini_func ${func_name}
-    checkstr ${SC_LOGDATE}
-       
-    if [[ ! -d ${git_src_dir} ]]; then
-	echo "No git source repository in the expected location ${git_src_dir}"
-    else
-	echo "Old git source repository in the expected location ${git_src_dir}"
-	echo "The old one is renamed to ${git_src_dir}_${SC_LOGDATE}"
-	mv  ${git_src_dir} ${git_src_dir}_${SC_LOGDATE}
-    fi
-    
-    # Alwasy fresh cloning ..... in order to workaround any local 
-    # modification in the repository, which was cloned before. 
-    #
-    git clone ${git_src_url}/${git_src_name} ${git_src_top}/${git_src_name}
-    
-
-    end_func ${func_name}
 }
 
 # Generic : git_selection
@@ -166,24 +129,9 @@ function git_selection() {
 }
 
 
-function git_select() {
-
-    SRC_NAME=${2}
-    #"danfysik-mps8500"
-    SRC_URL=${1}
-    # "https://github.com/jeonghanlee"
-    SRC_DIR=${SC_TOP}/${SC_GIT_SRC_NAME}
-
-
-    git_clone ${SRC_DIR} ${SRC_URL} ${SRC_NAME}
-
-    pushd ${SRC_DIR}
-    git_selection
-    popd
-    
-}
-
-git_select "https://github.com/jeonghanlee" "danfysik-mps8500"
+pushd ${1}
+git_selection
+popd
 
 exit
 

@@ -4,10 +4,10 @@
 # email  : jeonghan.lee@gmail.com
 
 
-declare -gr SC_SCRIPT="$(realpath "$0")"
-declare -gr SC_SCRIPTNAME="$(basename "$SC_SCRIPT")"
-declare -gr SC_TOP="$(dirname "$SC_SCRIPT")"
-declare -gr SC_LOGDATE="$(date +%Y%b%d-%H%M-%S%Z)"
+declare SC_SCRIPT="$(realpath "$0")"
+declare SC_SCRIPTNAME="$(basename "$SC_SCRIPT")"
+declare SC_TOP="$(dirname "$SC_SCRIPT")"
+declare SC_LOGDATE="$(date +%Y%b%d-%H%M-%S%Z)"
 
 export EPICS_HOST_ARCH=linux-x86_64
 export EPICS_PATH=${SC_TOP}

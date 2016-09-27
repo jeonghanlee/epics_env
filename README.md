@@ -21,15 +21,28 @@ EPICS Environment
 
 * Command set 1
 ```
-git clone -b work https://github.com/jeonghanlee/jhlee_ee.git
-cd jhlee_ee/
+git clone https://github.com/jeonghanlee/epics_env
+cd epics_env/
 git submodule init
 git submodule update
 ```
 
 * Command set 2
 ```
-git clone --recursive -b work https://github.com/jeonghanlee/jhlee_ee.git
+git clone --recursive https://github.com/jeonghanlee/epics_env
+```
+
+## Set a specific version of base, and each module
+```
+$ bash epics_env_setup.bash epics-base
+```
+Select one of git tags which one wants to install.
+
+## Make
+```
+$ make clean
+$ make
+
 ```
 
 # add a submodule
