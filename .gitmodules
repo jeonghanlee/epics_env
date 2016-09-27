@@ -42,3 +42,8 @@
 	path = epics-modules/mrfioc2
 	url = https://github.com/epics-modules/mrfioc2
 	ignore = dirty
+[submodule "epics-modules/calc"]
+	path = epics-modules/calc
+	url = https://github.com/epics-modules/calc
+	ignore = dirty
+	

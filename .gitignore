@@ -34,7 +34,6 @@ RELEASE.local
 *.dSYM/
 
 *CEST
-epics-base/*
-epics-modules/*
+
 
 

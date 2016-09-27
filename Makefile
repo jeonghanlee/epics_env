@@ -9,21 +9,22 @@ MODULE_MODBUS=$(EPICS_MODULES)/modbus
 MODULE_IOCSTATS=$(EPICS_MODULES)/iocStats
 MODULE_SSCAN=$(EPICS_MODULES)/sscan
 MODULE_BUSY=$(EPICS_MODULES)/busy
-
+MODULE_CALC=$(EPICS_MODULES)/calc
 
 export EPICS_BASE
 export EPICS_MODULES
 
 
-all: RELEASE.local modules
+all: RELEASE.local modules base
+
+base:
 	$(MAKE) -C $(EPICS_BASE)
-	# $(MAKE) -C $(ASYN)
-	# $(MAKE) -C $(STREAM)
-	# $(MAKE) -C $(AUTOSAVE)
-	# $(MAKE) -C $(MODBUS)
-	# $(MAKE) -C $(IOCSTATS)
-	# $(MAKE) -C $(SSCAN)
-	# $(MAKE) -C $(BUSY)
+
+clean:
+	rm -f RELEASE.local
+	rm -f *~
+
+modules: release
 	$(MAKE) -C $(MODULE_ASYN)
 	$(MAKE) -C $(MODULE_STREAM)
 	$(MAKE) -C $(MODULE_AUTOSAVE)
@@ -31,13 +32,10 @@ all: RELEASE.local modules
 	$(MAKE) -C $(MODULE_IOCSTATS)
 	$(MAKE) -C $(MODULE_SSCAN)
 	$(MAKE) -C $(MODULE_BUSY)
+	$(MAKE) -C $(MODULE_CALC)
 ##	$(MAKE) -C $(EPICS_MODULES)/devlib2
 
-clean:
-	rm -f RELEASE.local
-	rm -f *~
-
-modules:
+release:
 	echo "EPICS_BASE=$(EPICS_BASE)" > $(MODULE_ASYN)/configure/RELEASE
 	echo "EPICS_BASE=$(EPICS_BASE)" > $(MODULE_STREAM)/configure/RELEASE
 	echo "ASYN=$(MODULE_ASYN)" >> $(MODULE_STREAM)/configure/RELEASE
@@ -48,7 +46,8 @@ modules:
 	echo "EPICS_BASE=$(EPICS_BASE)" > $(MODULE_SSCAN)/configure/RELEASE
 	echo "EPICS_BASE=$(EPICS_BASE)" > $(MODULE_BUSY)/configure/RELEASE
 	echo "ASYN=$(MODULE_ASYN)" >> $(MODULE_BUSY)/configure/RELEASE
-
+	echo "EPICS_BASE=$(EPICS_BASE)" > $(MODULE_CALC)/configure/RELEASE
+	echo "ASYN=$(MODULE_ASYN)" >> $(MODULE_CALC)/configure/RELEASE
 
 
 RELEASE.local: RELEASE.local.in
