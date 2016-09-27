@@ -166,6 +166,7 @@ function git_selection() {
 }
 
 
+
 function git_select() {
 
     SRC_NAME=${2}
@@ -177,10 +178,36 @@ function git_select() {
 
     git_clone ${SRC_DIR} ${SRC_URL} ${SRC_NAME}
 
-    pushd ${SRC_DIR}
+    pushd ${SRC_DIR}/${SRC_NAME}
+
     git_selection
-    popd
     
+    if [ -f .gitignore ]; then
+	echo ".gitignore exists"
+    else
+	cat > .gitignore <<EOF
+*~
+*Common
+dbd
+include
+doc
+html
+db
+adl
+alh
+cfg
+edl
+lib
+envPaths
+#*
+*#
+.#*
+*log.*
+bin
+O.*
+EOF
+    fi
+    popd   
 }
 
 git_select "https://github.com/jeonghanlee" "danfysik-mps8500"
