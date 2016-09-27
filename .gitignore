@@ -32,3 +32,8 @@ RELEASE.local
 
 # Debug files
 *.dSYM/
+
+*CEST
+epics-base
+epics-modules
+
