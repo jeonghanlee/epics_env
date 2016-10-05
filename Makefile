@@ -1,7 +1,7 @@
 # Makefile is copied from https://github.com/mdavidsaver/v4workspace
 # TODO Modules
 #
-# SNCSEQ / IPAC / CAPUTLOG
+# SNCSEQ / CAPUTLOG
 #
 EPICS_BASE=$(CURDIR)/epics-base
 EPICS_MODULES=$(CURDIR)/epics-modules
@@ -17,6 +17,8 @@ M_MOTOR=$(EPICS_MODULES)/motor
 M_MRFIOC2=$(EPICS_MODULES)/mrfioc2
 M_SSCAN=$(EPICS_MODULES)/sscan
 M_STREAM=$(EPICS_MODULES)/stream
+M_IPAC=$(EPICS_MODULES)/ipac
+
 
 
 export EPICS_BASE
@@ -29,11 +31,12 @@ base:
 	$(MAKE) -C $(EPICS_BASE)
 
 modules: release
-	$(MAKE) -C $(M_ASYN)
 	$(MAKE) -C $(M_AUTOSAVE)
 	$(MAKE) -C $(M_IOCSTATS)
+	$(MAKE) -C $(M_IPAC)
 	$(MAKE) -C $(M_DEVLIB2)
 	$(MAKE) -C $(M_SSCAN)
+	$(MAKE) -C $(M_ASYN)
 	$(MAKE) -C $(M_BUSY)
 	$(MAKE) -C $(M_CALC)
 	$(MAKE) -C $(M_MODBUS)
@@ -43,17 +46,20 @@ modules: release
 
 
 release: 
-##	ASYN : BASE[*] / SNCSEQ* / IPAC* 
-	echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_ASYN)/configure/RELEASE
 ##	AUTOSAVE : BASE[*] 
 	echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_AUTOSAVE)/configure/RELEASE
 ##	DEVIOCSTATS : BASE[*] / SNCSEQ*
 	echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_IOCSTATS)/configure/RELEASE
+##	IPAC : BASE[*] 
+	echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_IPAC)/configure/RELEASE
 ##      DEVLIB2 : BASE[*]
 	echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_DEVLIB2)/configure/RELEASE.local
 ##	SSCAN : BASE[*] / SNCSEQ 
 	echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_SSCAN)/configure/RELEASE
-##	BUSY : BASE[*] / ASYN[*}
+##	ASYN : BASE[*] / SNCSEQ / IPAC
+	echo "IPAC=$(M_IPAC)"            > $(M_ASYN)/configure/RELEASE
+	echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_ASYN)/configure/RELEASE
+##	BUSY : BASE[*] / ASYN[*]
 	echo "ASYN=$(M_ASYN)"            > $(M_BUSY)/configure/RELEASE
 	echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_BUSY)/configure/RELEASE
 ##	CALC : BASE[*] / SSCAN (swait record) / SNCSEQ (editSseq)
@@ -64,6 +70,7 @@ release:
 	echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_MODBUS)/configure/RELEASE
 ##	MOTOR : BASE[*] / ASYN[*] / BUSY[*] / SNCSEQ / IPAC
 	echo "ASYN=$(M_ASYN)"            > $(M_MOTOR)/configure/RELEASE
+	echo "IPAC=$(M_IPAC)"            > $(M_MOTOR)/configure/RELEASE
 	echo "BUSY=$(M_BUSY)"           >> $(M_MOTOR)/configure/RELEASE
 	echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_MOTOR)/configure/RELEASE
 ##	MRFIOC2 : BASE[*] / DEVLIB2[*] / DEVIOCSTATS / AUTOSAVE / CAPUTLOG
