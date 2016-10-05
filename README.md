@@ -33,8 +33,10 @@ git clone --recursive https://github.com/jeonghanlee/epics_env
 ```
 
 ## Set a specific version of base, and each module
+* Select 0, if one wants to use **Master** branch
+
 ```
-$ bash epics_env_setup.bash epics-base
+$ bash epics_env_setup.bash 
 ```
 Select one of git tags which one wants to install.
 
