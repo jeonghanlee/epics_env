@@ -15,7 +15,7 @@ export EPICS_BASE
 export EPICS_MODULES
 
 
-all: RELEASE.local modules base
+all: RELEASE.local base modules
 
 base:
 	$(MAKE) -C $(EPICS_BASE)

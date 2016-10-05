@@ -40,7 +40,7 @@
 	ignore = dirty
 [submodule "epics-modules/mrfioc2"]
 	path = epics-modules/mrfioc2
-	url = https://github.com/epics-modules/mrfioc2
+	url = https://github.com/jeonghanlee/mrfioc2
 	ignore = dirty
 [submodule "epics-modules/calc"]
 	path = epics-modules/calc
