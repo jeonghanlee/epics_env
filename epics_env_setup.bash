@@ -128,7 +128,12 @@ function git_selection() {
  
 }
 
+EPICS_BASE=${SC_TOP}/epics-base
 EPICS_MODULES=${SC_TOP}/epics-modules
+
+pushd ${EPICS_BASE}
+git_selection
+popd
 
 pushd ${EPICS_MODULES}
 
