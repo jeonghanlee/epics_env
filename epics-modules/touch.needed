@@ -1,7 +1,0 @@
-- iocStats
-  /RELEAS_SITE
-   Blank all, add BASE_SITE_TOP="where epics-base is"
-   
-- asyn
-  /configure/RELEASE
-  comment out all, add BASE_SITE_TOP="where epics-base is"

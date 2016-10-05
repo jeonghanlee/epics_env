@@ -128,9 +128,21 @@ function git_selection() {
  
 }
 
+EPICS_MODULES=${SC_TOP}/epics-modules
 
-pushd ${1}
-git_selection
+pushd ${EPICS_MODULES}
+
+for amodule in $(ls -d */);
+do
+    echo ${amodule%%/};
+    pushd ${amodule}
+    git_selection
+    popd
+done
+
+
+# pushd ${1}
+# git_selection
 popd
 
 exit
