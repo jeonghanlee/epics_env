@@ -139,6 +139,7 @@ pushd ${EPICS_BASE}
 git_selection
 popd
 
+pushd ${EPICS_MODULES}
 for amodule in $(find . -mindepth 1 -maxdepth 1 -type d);
 do
     echo ${amodule%%/};
