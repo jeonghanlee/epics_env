@@ -62,3 +62,8 @@
 	url = https://github.com/epics-modules/ipac
 	branch = master
 	ignore = dirty
+[submodule "epics-modules/seq"]
+	path = epics-modules/seq
+	url = http://www-csr.bessy.de/control/SoftDist/sequencer/repo/branch-2-2.git
+	branch = master
+	ignore = dirty

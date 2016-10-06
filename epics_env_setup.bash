@@ -20,7 +20,7 @@
 # Author : Jeong Han Lee
 # email  : jeonghan.lee@gmail.com
 # Date   : 
-# version : 0.1.0 
+# version : 0.1.1 
 #
 # http://www.gnu.org/software/bash/manual/bashref.html#Bash-Builtins
 
@@ -53,6 +53,8 @@ function checkstr() {
 }
 
 # Generic : git_selection
+#
+# 1.0.1 : Thursday, October  6 00:51:24 CEST 2016
 #
 # Require Global vairable
 # - SC_SELECTED_GIT_SRC  : Output
@@ -90,8 +92,10 @@ function git_selection() {
     # do I need this? 
     # selected_one=${line/.*}
 
+    # Without selection number, type [ENTER], 0 is selected as default.
+    #
     selected_one=${line}
-
+    
     let "list_size = ${#git_src_list[@]} - 1"
     
     if [[ "$selected_one" -gt "$list_size" ]]; then
@@ -135,19 +139,13 @@ pushd ${EPICS_BASE}
 git_selection
 popd
 
-pushd ${EPICS_MODULES}
-
-for amodule in $(ls -d */);
+for amodule in $(find . -mindepth 1 -maxdepth 1 -type d);
 do
     echo ${amodule%%/};
     pushd ${amodule}
     git_selection
     popd
 done
-
-
-# pushd ${1}
-# git_selection
 popd
 
 exit
