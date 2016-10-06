@@ -36,7 +36,7 @@ git submodule update
 ```
 
 ### Set a specific version of base, and each module
-* For EPICS base : it has no master branch, thus, select specfic version 3.15.4 (88)
+* For EPICS base : it has no master branch, thus, select specfic version 3.15.4
 * For EPICS modules : [ENTER] or 0 + [ENTER] means that you select the master branch/
 ```
 $ bash epics_env_setup.bash 
