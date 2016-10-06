@@ -1,12 +1,12 @@
-EPICS Environment
+Simple EPICS Environment
 =================
 
-# Purpose
+## Purpose
 
 * To develop a generic way to build an entire EPICS environment in order to make an EPICS environment transparent well to the community.
 * To provide a simple EPICS environment to biginners easily. 
 
-# Limitation
+## Limitation
 * Due to lack of my knowledge and some warnings from experts, I am using the simplest model of using submodules which is found in https://git-scm.com/book/en/v2/Git-Tools-Submodules
 
 
@@ -16,10 +16,10 @@ EPICS Environment
 
 
 
-# Commands
+## Commands
 
 
-## Clone
+### Clone
 
 * Command set 1
 ```
@@ -34,21 +34,20 @@ git submodule update
 git clone --recursive https://github.com/jeonghanlee/epics_env
 ```
 
-## Set a specific version of base, and each module
+### Set a specific version of base, and each module
 * For EPICS base : it has no master branch, thus, select specfic version 3.15.4 (88)
 * For EPICS modules : [ENTER] or 0 + [ENTER] means that you select the master branch/
 ```
 $ bash epics_env_setup.bash 
 ```
 
-## Make
+### Make
 ```
 $ make
 ```
 
-# add a submodule
-
-* add it into 
+## Want to add an additional module
+* Note that Makefile in epics-modules should be changed according to any added modules. 
 
 ```
 git submodule add https://github.com/epics-modules/busy epics-modules/busy
@@ -66,7 +65,7 @@ git submodule add https://github.com/epics-modules/busy epics-modules/busy
 * push it to the working branch
 
 
-# known problems
+## known problems
 
 * somehow, EPICS_HOST_ARCH returned value has the strange string like debian8. So it is sometimes necessary to set EPICS_HOST_ARCH first
 ```
