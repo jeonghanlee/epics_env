@@ -1,9 +1,6 @@
 
-EPICS_BASE=$(CURDIR)/epics-base
-EPICS_MODULES=$(CURDIR)/epics-modules
-
-export EPICS_BASE
-export EPICS_MODULES
+TOP = .
+include $(TOP)/configure/CONFIG
 
 
 all: base modules
@@ -19,3 +16,11 @@ clean:
 	$(MAKE) -C $(EPICS_MODULES) clean
 
 .PHONY: all clean base modules 
+
+
+check:
+	@echo $(EPICS_BASE)
+	@echo $(EPICS_MODULES)
+	@echo $(EPICS_APPS)
+	@echo $(EPICS_HOST_ARCH)
+
