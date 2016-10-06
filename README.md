@@ -4,7 +4,9 @@ EPICS Environment
 # Purpose
 
 * To develop a generic way to build an entire EPICS environment in order to make an EPICS environment transparent well to the community.
+* To provide a simple EPICS environment to biginners easily. 
 
+# Limitation
 * Due to lack of my knowledge and some warnings from experts, I am using the simplest model of using submodules which is found in https://git-scm.com/book/en/v2/Git-Tools-Submodules
 
 
