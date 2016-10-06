@@ -21,17 +21,18 @@ Simple EPICS Environment
 
 ### Clone
 
+
 * Command set 1
+```
+git clone --recursive https://github.com/jeonghanlee/epics_env
+```
+
+* Command set 2
 ```
 git clone https://github.com/jeonghanlee/epics_env
 cd epics_env/
 git submodule init
 git submodule update
-```
-
-* Command set 2
-```
-git clone --recursive https://github.com/jeonghanlee/epics_env
 ```
 
 ### Set a specific version of base, and each module
