@@ -46,7 +46,7 @@ $ bash epics_env_setup.bash
 $ make
 ```
 ### EPICS Environment
-* Source the EPICS enviornment,
+
 ```
 $ source setEpicsEnv.bash
 
