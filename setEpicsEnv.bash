@@ -3,9 +3,17 @@
 # Author : Jeong Han Lee
 # email  : jeonghan.lee@gmail.com
 
+# 
+# PREFIX : SC_, so declare -p can show them in a place
+# 
+# Generic : Global vaiables - readonly
+#
+
+sc_top="$(dirname "$(realpath "$0")")"
+
 
 export EPICS_HOST_ARCH=linux-x86_64
-export EPICS_PATH=${HOME}/epics_env
+export EPICS_PATH=${sc_top}
 export EPICS_BASE=${EPICS_PATH}/epics-base
 export EPICS_EXTENSIONS=${EPICS_PATH}/extensions
 export EPICS_MODULES=${EPICS_PATH}/epics-modules

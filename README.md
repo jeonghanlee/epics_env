@@ -16,6 +16,23 @@ Simple EPICS Environment
 
 
 
+## Supported EPICS Base and Modules
+* autosave
+* ipac
+* devlib2
+* seq (SNCSEQ)
+* iocStats
+* sscan
+* asyn
+* busy
+* modbus
+* stream
+* calc
+* motor
+* mrfioc2
+
+
+
 ## Commands
 
 
@@ -38,8 +55,13 @@ git submodule update
 ### Set a specific version of base, and each module
 * For EPICS base : it has no master branch, thus, select specfic version 3.15.4 (88)
 * For EPICS modules : [ENTER] or 0 + [ENTER] means that you select the master branch/
+* Recent 10 git tags are shown to be selected
 ```
 $ bash epics_env_setup.bash 
+```
+* Recent 5 git tags are shown to be selected
+```
+$ bash epics_env_setup.bash 5
 ```
 
 ### Make
@@ -88,9 +110,22 @@ git submodule add https://github.com/epics-modules/busy epics-modules/busy
 * push it to the working branch
 
 
-## known problems
+## Issues
 
-* somehow, EPICS_HOST_ARCH returned value has the strange string like debian8. So it is sometimes necessary to set EPICS_HOST_ARCH first
+* ESS CentOS 7.1 1503 has no re2c, so manual installation is needed in order to use SNCSEQ. 
+
 ```
-export EPICS_HOST_ARCH="linux-x86_64"
+[]$ git clone https://github.com/skvadrik/re2c
+[]$ cd re2c/re2c/
+[re2c]$ ./autogen.sh 
+[re2c]$ ./configure 
+[re2c]$ make
+[re2c]$ sudo make install
+Reconfigure to rebuild docs: ./configure --enable-docs
+make[1]: Entering directory `/home/iocuser/gitsrc/re2c/re2c'
+ /usr/bin/mkdir -p '/usr/local/bin'
+  /usr/bin/install -c re2c '/usr/local/bin'
+ /usr/bin/mkdir -p '/usr/local/share/man/man1'
+ /usr/bin/install -c -m 644 doc/re2c.1 '/usr/local/share/man/man1'
+make[1]: Leaving directory `/home/iocuser/gitsrc/re2c/re2c'
 ```

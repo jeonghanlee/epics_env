@@ -20,7 +20,7 @@
 # Author : Jeong Han Lee
 # email  : jeonghan.lee@gmail.com
 # Date   : 
-# version : 0.1.1 
+# version : 0.1.2 
 #
 # http://www.gnu.org/software/bash/manual/bashref.html#Bash-Builtins
 
@@ -54,7 +54,7 @@ function checkstr() {
 
 # Generic : git_selection
 #
-# 1.0.2 : Thursday, October  6 15:05:40 CEST 2016
+# 1.0.3 : Thursday, October  6 15:34:12 CEST 2016
 #
 # Require Global vairable
 # - SC_SELECTED_GIT_SRC  : Output
@@ -83,24 +83,24 @@ function git_selection() {
     fi
 
     git_src_list+=("master")
-    git_tags=$(git describe --tags `git rev-list --tags --max-count=${n_tags}`);
-    
-    git_exitstatus=$?
 
-    if [ $git_exitstatus = 0 ]; then
-	#
-	# (${}) and ($(command))  are important to separate output as an indiviaul arrar
-	#
-	git_src_list+=(${git_tags});
-    else
-	# In case, No tags can describe, use git tag instead of git describe
-	#
-	# fatal: No tags can describe '7fce903a82d47dec92012664648cacebdacd88e1'.
-	# Try --always, or create some tags.
+    # git_tags=$(git describe --tags `git rev-list --tags --max-count=${n_tags}`);
+    # git_exitstatus=$?
+    # if [ $git_exitstatus = 0 ]; then
+    # 	#
+    # 	# (${}) and ($(command))  are important to separate output as an indiviaul arrar
+    # 	#
+    # 	git_src_list+=(${git_tags});
+    # else
+    # 	# In case, No tags can describe, use git tag instead of git describe
+    # 	#
+    # 	# fatal: No tags can describe '7fce903a82d47dec92012664648cacebdacd88e1'.
+    # 	# Try --always, or create some tags.
+    # doesn't work for CentOS7
+    #    git_src_list+=($(git tag -l --sort=-refname  | head -n${n_tags}))
+    # fi
 
-	git_src_list+=($(git tag -l --sort=-refname  | head -n${n_tags}))
-    fi
-    
+    git_src_list+=($(git tag -l | sort -r | head -n${n_tags}))
     
     for tag in "${git_src_list[@]}"
     do
@@ -157,6 +157,7 @@ function git_selection() {
     end_func ${func_name}
  
 }
+
 
 EPICS_BASE=${SC_TOP}/epics-base
 EPICS_MODULES=${SC_TOP}/epics-modules

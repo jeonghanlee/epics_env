@@ -1,5 +1,5 @@
 
-TOP = .
+TOP = $(CURDIR)
 include $(TOP)/configure/CONFIG
 
 
@@ -8,14 +8,23 @@ all: base modules
 base:
 	$(MAKE) -C $(EPICS_BASE)
 
-modules:
+modules: base
 	$(MAKE) -C $(EPICS_MODULES)
 
-clean:
+modules-release:
+	$(MAKE) -C $(EPICS_MODULES) release
+
+clean: modulesclean baseclean
 	rm -f *~
+
+baseclean:
+	$(MAKE) -C $(EPICS_BASE) clean
+
+modulesclean:
 	$(MAKE) -C $(EPICS_MODULES) clean
 
-.PHONY: all clean base modules 
+
+.PHONY: all clean baseclean modulesclean base modules modules-release
 
 
 check:

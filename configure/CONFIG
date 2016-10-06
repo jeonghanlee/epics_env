@@ -12,8 +12,8 @@ endif
 #
 
 
-
-# export EPICS_BASE
-# export EPICS_MODULES
-# export EPICS_HOST_ARCH
+export EPICS_PATH
+export EPICS_BASE
+export EPICS_MODULES
+export EPICS_HOST_ARCH
 

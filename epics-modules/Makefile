@@ -30,9 +30,9 @@ M_MRFIOC2=$(EPICS_MODULES)/mrfioc2
 M_DIRS:=$(sort $(dir $(wildcard */)))
 
 
-all: release modules
+all: modules
 
-modules:
+modules: release
 #	BASE[o]
 	$(MAKE) -C $(M_AUTOSAVE)
 	$(MAKE) -C $(M_IPAC)
@@ -58,41 +58,41 @@ modules:
 
 release:
 #	BASE[o]
-	echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_AUTOSAVE)/configure/RELEASE
-	echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_IPAC)/configure/RELEASE
-	echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_DEVLIB2)/configure/RELEASE.local
-	echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_SNCSEQ)/configure/RELEASE
+	@echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_AUTOSAVE)/configure/RELEASE
+	@echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_IPAC)/configure/RELEASE
+	@echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_DEVLIB2)/configure/RELEASE.local
+	@echo "EPICS_BASE=$(EPICS_BASE)"  > $(M_SNCSEQ)/configure/RELEASE
 #	BASE[o], SNCSEQ[o]
-	echo "SNCSEQ=$(M_SNCSEQ)"        > $(M_IOCSTATS)/configure/RELEASE
-	echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_IOCSTATS)/configure/RELEASE
-	echo "SNCSEQ=$(M_SNCSEQ)"        > $(M_SSCAN)/configure/RELEASE
-	echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_SSCAN)/configure/RELEASE
+	@echo "SNCSEQ=$(M_SNCSEQ)"        > $(M_IOCSTATS)/configure/RELEASE
+	@echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_IOCSTATS)/configure/RELEASE
+	@echo "SNCSEQ=$(M_SNCSEQ)"        > $(M_SSCAN)/configure/RELEASE
+	@echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_SSCAN)/configure/RELEASE
 #	BASE[o], IPAC[o], SNCSEQ[o]
-	echo "IPAC=$(M_IPAC)"            > $(M_ASYN)/configure/RELEASE
-	echo "SNCSEQ=$(M_SNCSEQ)"       >> $(M_ASYN)/configure/RELEASE
-	echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_ASYN)/configure/RELEASE
+	@echo "IPAC=$(M_IPAC)"            > $(M_ASYN)/configure/RELEASE
+	@echo "SNCSEQ=$(M_SNCSEQ)"       >> $(M_ASYN)/configure/RELEASE
+	@echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_ASYN)/configure/RELEASE
 #	BASE[o], ASYN[o]
-	echo "ASYN=$(M_ASYN)"            > $(M_BUSY)/configure/RELEASE
-	echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_BUSY)/configure/RELEASE
-	echo "ASYN=$(M_ASYN)"            > $(M_MODBUS)/configure/RELEASE
-	echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_MODBUS)/configure/RELEASE
-	echo "ASYN=$(M_ASYN)"            > $(M_STREAM)/configure/RELEASE
-	echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_STREAM)/configure/RELEASE
+	@echo "ASYN=$(M_ASYN)"            > $(M_BUSY)/configure/RELEASE
+	@echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_BUSY)/configure/RELEASE
+	@echo "ASYN=$(M_ASYN)"            > $(M_MODBUS)/configure/RELEASE
+	@echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_MODBUS)/configure/RELEASE
+	@echo "ASYN=$(M_ASYN)"            > $(M_STREAM)/configure/RELEASE
+	@echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_STREAM)/configure/RELEASE
 #	BASE[o], SSCAN[o], SNCSEQ[o]
-	echo "SSCAN=$(M_SSCAN)"          > $(M_CALC)/configure/RELEASE
-	echo "SNCSEQ=$(M_SNCSEQ)"       >> $(M_CALC)/configure/RELEASE
-	echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_CALC)/configure/RELEASE
+	@echo "SSCAN=$(M_SSCAN)"          > $(M_CALC)/configure/RELEASE
+	@echo "SNCSEQ=$(M_SNCSEQ)"       >> $(M_CALC)/configure/RELEASE
+	@echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_CALC)/configure/RELEASE
 #	BASE[o], ASYN[o], BUSY[o], IPAC[o], SNCSEQ[o]
-	echo "ASYN=$(M_ASYN)"            > $(M_MOTOR)/configure/RELEASE
-	echo "SNCSEQ=$(M_SNCSEQ)"       >> $(M_MOTOR)/configure/RELEASE
-	echo "IPAC=$(M_IPAC)"           >> $(M_MOTOR)/configure/RELEASE
-	echo "BUSY=$(M_BUSY)"           >> $(M_MOTOR)/configure/RELEASE
-	echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_MOTOR)/configure/RELEASE
+	@echo "ASYN=$(M_ASYN)"            > $(M_MOTOR)/configure/RELEASE
+	@echo "SNCSEQ=$(M_SNCSEQ)"       >> $(M_MOTOR)/configure/RELEASE
+	@echo "IPAC=$(M_IPAC)"           >> $(M_MOTOR)/configure/RELEASE
+	@echo "BUSY=$(M_BUSY)"           >> $(M_MOTOR)/configure/RELEASE
+	@echo "EPICS_BASE=$(EPICS_BASE)" >> $(M_MOTOR)/configure/RELEASE
 #	BASE[o], DEVLIB2[o], DEVIOCSTATS[o], AUTOSAVE[o], CAPUTLOG[x]
-	echo "DEVLIB2=$(M_DEVLIB2)"       > $(M_MRFIOC2)/configure/RELEASE.local
-	echo "DEVIOCSTATS=$(M_IOCSTATS)" >> $(M_MRFIOC2)/configure/RELEASE.local
-	echo "AUTOSAVE=$(M_AUTOSAVE)"    >> $(M_MRFIOC2)/configure/RELEASE.local
-	echo "EPICS_BASE=$(EPICS_BASE)"  >> $(M_MRFIOC2)/configure/RELEASE.local
+	@echo "DEVLIB2=$(M_DEVLIB2)"       > $(M_MRFIOC2)/configure/RELEASE.local
+	@echo "DEVIOCSTATS=$(M_IOCSTATS)" >> $(M_MRFIOC2)/configure/RELEASE.local
+	@echo "AUTOSAVE=$(M_AUTOSAVE)"    >> $(M_MRFIOC2)/configure/RELEASE.local
+	@echo "EPICS_BASE=$(EPICS_BASE)"  >> $(M_MRFIOC2)/configure/RELEASE.local
 
 
 clean: $(M_DIRS)
