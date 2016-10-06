@@ -3,14 +3,8 @@
 # Author : Jeong Han Lee
 # email  : jeonghan.lee@gmail.com
 
-# 
-# PREFIX : SC_, so declare -p can show them in a place
-# 
-# Generic : Global vaiables - readonly
-#
 
-sc_top="$(dirname "$(realpath "$0")")"
-
+sc_top=${PWD}
 
 export EPICS_HOST_ARCH=linux-x86_64
 export EPICS_PATH=${sc_top}

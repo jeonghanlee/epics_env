@@ -24,8 +24,6 @@ modulesclean:
 	$(MAKE) -C $(EPICS_MODULES) clean
 
 
-.PHONY: all clean baseclean modulesclean base modules modules-release
-
 
 check:
 	@echo $(EPICS_BASE)
@@ -33,3 +31,6 @@ check:
 	@echo $(EPICS_APPS)
 	@echo $(EPICS_HOST_ARCH)
 
+
+
+.PHONY: all clean baseclean modulesclean base modules modules-release

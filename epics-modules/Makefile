@@ -100,7 +100,6 @@ clean: $(M_DIRS)
 $(M_DIRS):
 	$(MAKE) -C $@ clean
 
-.PHONY: all clean release $(M_DIRS)
 
 
 
@@ -111,3 +110,6 @@ $(M_DIRS):
 dirs:
 	@echo $(M_DIRS) || true
 	@echo $(findstring asyn, $(M_DIRS))
+
+
+.PHONY: all clean release dirs $(M_DIRS)
