@@ -1,4 +1,0 @@
-EPICS_BASE=$(THE_ROOT_DIR)/epics-base
-EPICS_MODULES=$(THE_ROOT_DIR)/epics-modules
-ASYN=$(EPICS_MODULES)/asyn
-AUTOSAVE=$(EPICS_MODULES)/autosave
