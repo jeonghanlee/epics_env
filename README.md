@@ -33,18 +33,15 @@ git clone --recursive https://github.com/jeonghanlee/epics_env
 ```
 
 ## Set a specific version of base, and each module
-* Select 0, if one wants to use **Master** branch
-
+* For EPICS base : it has no master branch, thus, select specfic version 3.15.4 (88)
+* For EPICS modules : [ENTER] or 0 + [ENTER] means that you select the master branch/
 ```
 $ bash epics_env_setup.bash 
 ```
-Select one of git tags which one wants to install.
 
 ## Make
 ```
-$ make clean
 $ make
-
 ```
 
 # add a submodule
