@@ -1,12 +1,21 @@
 
 ### How to build the BASE and its modules
-* Start again from scratch
+
+
+* Start all again from scratch
 
 ```
 jhlee@kaffee:~/epics_env (master)$ git submodule deinit -f .
 jhlee@kaffee:~/epics_env (master)$ git submodule init
 jhlee@kaffee:~/epics_env (master)$ git submodule update
 ```
+
+* Start all modules from scratch
+
+```
+jhlee@kaffee:~/epics_env (master)$ git submodule deinit -f epics-modules/.
+jhlee@kaffee:~/epics_env (master)$ git submodule init epics-modules
+jhlee@kaffee:~/epics_env (master)$ git submodule update epics-modules
 
 * Set the desired version of BASE and its modules
 ```
