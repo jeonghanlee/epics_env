@@ -49,7 +49,7 @@ git clone --recursive https://github.com/jeonghanlee/epics_env
 git clone https://github.com/jeonghanlee/epics_env
 cd epics_env/
 git submodule init
-git submodule update
+git submodule update --init --recursive
 ```
 
 ### Set a specific version of base, and each module
