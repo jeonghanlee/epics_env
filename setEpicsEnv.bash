@@ -1,10 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 # Shell  : setEpicsEnv.bash
 # Author : Jeong Han Lee
 # email  : jeonghan.lee@gmail.com
 
-
-sc_top=${PWD}
+sc_top=$(dirname $BASH_SOURCE)
 
 export EPICS_HOST_ARCH=linux-x86_64
 export EPICS_PATH=${sc_top}
