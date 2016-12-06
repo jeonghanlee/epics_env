@@ -154,6 +154,9 @@ function git_selection() {
 	git_ckoutcmd="git checkout ${SC_SELECTED_GIT_SRC}"
 	$git_ckoutcmd
     fi
+
+    git submodule update --init --recursive
+    
     end_func ${func_name}
  
 }

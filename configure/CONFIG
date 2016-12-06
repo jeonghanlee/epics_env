@@ -5,10 +5,10 @@ EPICS_MODULES=$(TOP)/epics-modules
 EPICS_APPS=$(TOP)/epics-Apps
 
 # Provide a default if the user hasn't set EPICS_HOST_ARCH
-ifeq ($(origin EPICS_HOST_ARCH), undefined)
+#ifeq ($(origin EPICS_HOST_ARCH), undefined)
   # NB: We use a simply expanded variable here for performance:
   EPICS_HOST_ARCH := $(shell $(EPICS_BASE)/startup/EpicsHostArch.pl)
-endif
+#endif
 #
 
 

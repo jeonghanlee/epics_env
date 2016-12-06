@@ -42,13 +42,13 @@ init:
 	@git submodule deinit -f .
 	git submodule deinit -f .
 	git submodule init 
-	git submodule update 
+	git submodule update --init --recursive
 
 base-init:
 	@git submodule deinit -f $(EPICS_BASE)/.
 	git submodule deinit -f $(EPICS_BASE)/.
 	git submodule init $(EPICS_BASE)
-	git submodule update $(EPICS_BASE)
+	git submodule update --init --recursive $(EPICS_BASE)
 
 
 modules-init:
@@ -56,6 +56,6 @@ modules-init:
 	@git submodule deinit -f $(EPICS_MODULES)/.
 	git submodule deinit -f $(EPICS_MODULES)/.
 	git submodule init $(EPICS_MODULES)
-	git submodule update $(EPICS_MODULES)
+	git submodule update --init --recursive $(EPICS_MODULES)
 
 .PHONY: all base modules clean base-clean modules-clean modules-release init base-init modules=init
