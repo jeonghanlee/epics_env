@@ -36,23 +36,15 @@ Simple EPICS Environment
 ## Commands
 
 
-### Clone
+### Step 1 : Clone
 
-
-* Command set 1
-```
-git clone --recursive https://github.com/jeonghanlee/epics_env
-```
-
-* Command set 2
 ```
 git clone https://github.com/jeonghanlee/epics_env
 cd epics_env/
-git submodule init
-git submodule update --init --recursive
+make init
 ```
 
-### Set a specific version of base, and each module
+### Step 2 : Set a specific version of base, and each module
 * For EPICS base : it has no master branch, thus, select specfic version 3.15.4
 * For EPICS modules : [ENTER] or 0 + [ENTER] means that you select the master branch/
 * Recent 10 git tags are shown to be selected
@@ -64,10 +56,11 @@ $ bash epics_env_setup.bash
 $ bash epics_env_setup.bash 5
 ```
 
-### Make
+### Step 3 : Building EPICS base, and its modules
 ```
 $ make
 ```
+
 ### EPICS Environment
 
 ```
@@ -130,7 +123,7 @@ make[1]: Entering directory `/home/iocuser/gitsrc/re2c/re2c'
 make[1]: Leaving directory `/home/iocuser/gitsrc/re2c/re2c'
 ```
 
-* Required Packages ESS CentOS 7.1 1503 
+* Required Packages for ESS CentOS 7.1 1503 
 ```
 perl-Pod-Checker
 
