@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 # Shell  : setEpicsEnv.bash
 # Author : Jeong Han Lee
 # email  : jeonghan.lee@gmail.com
 
-sc_top=$(dirname $BASH_SOURCE)
+sc_top=$(dirname "$(readlink -f "$0")")
 
 export EPICS_HOST_ARCH=linux-x86_64
 export EPICS_PATH=${sc_top}
