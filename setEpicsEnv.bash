@@ -1,12 +1,15 @@
-#!/bin/bash
-# Shell  : setEpicsEnv.bash
+#!/bin/sh
+# Shell  : setEpicsEnv.sh
 # Author : Jeong Han Lee
 # email  : jeonghan.lee@gmail.com
 
-sc_top=$(dirname "$(readlink -f "$0")")
+
+SRC="${BASH_SOURCE[0]}"
+SRC_DIR="$( cd -P "$( dirname "$SRC" )" && pwd )"
+
 
 export EPICS_HOST_ARCH=linux-x86_64
-export EPICS_PATH=${sc_top}
+export EPICS_PATH=${SRC_DIR}
 export EPICS_BASE=${EPICS_PATH}/epics-base
 export EPICS_EXTENSIONS=${EPICS_PATH}/extensions
 export EPICS_MODULES=${EPICS_PATH}/epics-modules
