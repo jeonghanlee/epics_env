@@ -33,7 +33,8 @@ Simple EPICS Environment
 
 
 
-## Commands
+## Fresh Installation 
+
 
 
 ### Step 1 : Clone
@@ -83,6 +84,36 @@ where
 $ which caget
 /home/jhlee/epics_env/epics-base/bin/linux-x86_64/caget
 ```
+
+
+## Change Modules Version
+
+
+### Step 1 : Deinit, and init
+
+```
+cd epics_env/
+make modules-init
+
+```
+
+### Step 2 : Set a specific version of base, and each module
+* For EPICS base : it has no master branch, thus, select specfic version 3.15.4
+* For EPICS modules : [ENTER] or 0 + [ENTER] means that you select the master branch/
+* Recent 10 git tags are shown to be selected
+```
+$ bash epics_env_setup.bash 
+```
+* Recent 5 git tags are shown to be selected
+```
+$ bash epics_env_setup.bash 5
+```
+
+### Step 3 : Building EPICS base, and its modules
+```
+$ make
+```
+
 
 ## Want to add an additional module
 * Note that Makefile in epics-modules should be changed according to any added modules. 

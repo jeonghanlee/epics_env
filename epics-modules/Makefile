@@ -2,8 +2,8 @@
 # TODO Modules
 #
 # CAPUTLOG
+
 TOP = ..
-include $(TOP)/configure/CONFIG
 
 #BASE[o]
 M_AUTOSAVE=$(EPICS_MODULES)/autosave
@@ -102,7 +102,7 @@ clean: $(M_DIRS)
 $(M_DIRS):
 	$(MAKE) -C $@ clean
 
-init:
+init: git-msync
 	git submodule sync	
 	@git submodule deinit -f $(EPICS_MODULES)/
 	git submodule deinit -f $(EPICS_MODULES)/
@@ -120,4 +120,10 @@ dirs:
 	@echo $(findstring asyn, $(M_DIRS))
 
 
-.PHONY: all clean release dirs $(M_DIRS) init
+
+# In case, .gitmodules may be modified. 
+git-msync:
+	git submodule sync	
+
+
+.PHONY: all clean release dirs $(M_DIRS) init git-msync

@@ -1,19 +1,22 @@
+# Author : Jeong Han Lee
+# email  : jeonghan.lee@gmail.com
+# Date   : Thursday, December 29 22:55:48 CET 2016
+# version : 0.2.0
 
 EPICS_PATH=$(TOP)
 EPICS_BASE=$(TOP)/epics-base
 EPICS_MODULES=$(TOP)/epics-modules
 EPICS_APPS=$(TOP)/epics-Apps
-
-# Provide a default if the user hasn't set EPICS_HOST_ARCH
-#ifeq ($(origin EPICS_HOST_ARCH), undefined)
-  # NB: We use a simply expanded variable here for performance:
-  EPICS_HOST_ARCH := $(shell $(EPICS_BASE)/startup/EpicsHostArch.pl)
-#endif
-#
+EPICS_SITEAPPS=$(TOP)/epics-siteApps
+EPICS_SITELIBS=$(TOP)/epics-siteLibs
+EPICS_HOST_ARCH := $(shell $(EPICS_BASE)/startup/EpicsHostArch.pl)
 
 
 export EPICS_PATH
 export EPICS_BASE
 export EPICS_MODULES
+export EPICS_APPS
+export EPICS_SITEAPPS
+export EPICS_SITELIBS
 export EPICS_HOST_ARCH
 

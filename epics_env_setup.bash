@@ -19,15 +19,9 @@
 
 # Author : Jeong Han Lee
 # email  : jeonghan.lee@gmail.com
-# Date   : 
-# version : 0.1.2 
+# Date   : Thursday, December 29 22:55:48 CET 2016
+# version : 0.2.0 
 #
-# http://www.gnu.org/software/bash/manual/bashref.html#Bash-Builtins
-
-
-# 
-# PREFIX : SC_, so declare -p can show them in a place
-# 
 # Generic : Global vaiables - readonly
 #
 declare -gr SC_SCRIPT="$(realpath "$0")"
@@ -61,7 +55,7 @@ function checkstr() {
 #
 function git_selection() {
 
-    local func_name=${FUNCNAME[*]}; ini_func ${func_name}
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
 
     local git_ckoutcmd=""
     local checked_git_src=""
@@ -79,7 +73,7 @@ function git_selection() {
     # no set n_tags, set default 10
     
     if [[ ${n_tags} -eq 0 ]]; then
-	n_tags=10;
+	n_tags=20;
     fi
 
     git_src_list+=("master")
@@ -100,7 +94,7 @@ function git_selection() {
     #    git_src_list+=($(git tag -l --sort=-refname  | head -n${n_tags}))
     # fi
 
-    git_src_list+=($(git tag -l | sort -r | head -n${n_tags}))
+    git_src_list+=($(git tag -l | sort -V -r | grep -v -e alpha -e beta -e pre -e rc | head -n${n_tags}))
     
     for tag in "${git_src_list[@]}"
     do
@@ -165,21 +159,64 @@ function git_selection() {
 EPICS_BASE=${SC_TOP}/epics-base
 EPICS_MODULES=${SC_TOP}/epics-modules
 
-declare -i tag_cnt=$1;
 
-pushd ${EPICS_BASE}
-git_selection ${tag_cnt};
-popd
-
-pushd ${EPICS_MODULES}
-for amodule in $(find . -mindepth 1 -maxdepth 1 -type d);
-do
-    echo ${amodule%%/};
-    pushd ${amodule}
+function select_epics_base(){
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+    pushd ${EPICS_BASE}
     git_selection ${tag_cnt};
     popd
-done
-popd
+    end_func ${func_name};
+}
+
+function select_epics_modules() {
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+    pushd ${EPICS_MODULES}
+    for amodule in $(find . -mindepth 1 -maxdepth 1 -type d);
+    do
+	echo ${amodule%%/};
+	pushd ${amodule}
+	git_selection ${tag_cnt};
+	popd
+    done
+    popd
+    end_func ${func_name};
+}  
+
+
+
+
+
+# What should we do?
+DO="$1"
+ 
+case "$DO" in
+
+    all)
+	select_epics_base
+	select_epics_modules
+        ;;
+    base)
+	select_epics_base
+	;;
+    modules)
+	select_epics_modules
+	;;
+    *)
+	echo "">&2
+        echo "usage: $0 <command>" >&2
+        echo >&2
+        echo "  commands: explaination" >&2
+	echo ""
+        echo "          all     : Select BASE's and Modules' versions">&2
+        echo ""
+	echo "          base    : Select BASE's version">&2
+	echo ""
+	echo "          modules : Select Modules' versions">&2
+        echo ""
+        echo >&2
+	exit 0
+        ;;
+esac
 
 exit
 
