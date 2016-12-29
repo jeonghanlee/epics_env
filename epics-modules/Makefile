@@ -2,6 +2,8 @@
 # TODO Modules
 #
 # CAPUTLOG
+TOP = ..
+include $(TOP)/configure/CONFIG
 
 #BASE[o]
 M_AUTOSAVE=$(EPICS_MODULES)/autosave
@@ -100,8 +102,14 @@ clean: $(M_DIRS)
 $(M_DIRS):
 	$(MAKE) -C $@ clean
 
-
-
+init:
+	git submodule sync	
+	@git submodule deinit -f $(EPICS_MODULES)/
+	git submodule deinit -f $(EPICS_MODULES)/
+	sed -i '/submodule/,$$d'  $(TOP)/.git/config	
+#	$(foreach dir, $(M_DIRS), git rm --cached $(dir))
+	git submodule init  $(EPICS_MODULES)/
+	git submodule update --init --remote --recursive $(EPICS_MODULES)/
 
 # RELEASE.local: RELEASE.local.in
 # 	echo "THE_ROOT_DIR=$$PWD" > $@
@@ -112,4 +120,4 @@ dirs:
 	@echo $(findstring asyn, $(M_DIRS))
 
 
-.PHONY: all clean release dirs $(M_DIRS)
+.PHONY: all clean release dirs $(M_DIRS) init

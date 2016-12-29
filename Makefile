@@ -38,28 +38,26 @@ check:
 # endif
 
 # sed needs $$ instead of $ in Makefile
+git-sync:
+	git submodule sync	
 
-init: 
+init: git-sync
 	@git submodule deinit -f .
 	git submodule deinit -f .
 	sed -i '/submodule/,$$d'  $(TOP)/.git/config	
 	git submodule init 
-	git submodule update --init --recursive
+	git submodule update --init --recursive .
 
-base-init:
-	@git submodule deinit -f $(EPICS_BASE)/.
-	git submodule deinit -f $(EPICS_BASE)/.
+base-init: git-sync
+	@git submodule deinit -f $(EPICS_BASE)/
+	git submodule deinit -f $(EPICS_BASE)/
 	sed -i '/submodule/,$$d'  $(TOP)/.git/config	
 	git submodule init $(EPICS_BASE)
-	git submodule update --init --recursive $(EPICS_BASE)
+	git submodule update --init  $(EPICS_BASE)/.
 
 
-modules-init:
-	@git submodule deinit -f $(EPICS_MODULES)/.
-	git submodule deinit -f $(EPICS_MODULES)/.
-	sed -i '/epics-modules/,$$d'  $(TOP)/.git/config	
-	git submodule init $(EPICS_MODULES)
-	git submodule update --init --recursive $(EPICS_MODULES)
+modules-init: git-sync
+	$(MAKE) -C $(EPICS_MODULES) init
 
 
-.PHONY: all base modules clean base-clean modules-clean modules-release init base-init modules-init modules-gitcl
+.PHONY: all base modules clean base-clean modules-clean modules-release init base-init modules-init git-sync
