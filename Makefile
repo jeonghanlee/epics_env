@@ -55,7 +55,7 @@ modules-release:
 	$(MAKE) -C $(EPICS_MODULES) release
 
 ## Print basic EPICS environment variables
-env:
+env: 
 	@echo "EPICS_BASE          : "$(EPICS_BASE)
 	@echo "EPICS_MODULES       : "$(EPICS_MODULES)
 	@echo "EPICS_APPS          : "$(EPICS_APPS)
@@ -70,7 +70,12 @@ env:
 # 	git submodule init 
 # 	git submodule update --init --recursive .
 
-# # 
+# #
+## Get EPICS BASE source, mandatory to run it first
+init:  git-msync
+	git submodule init $(EPICS_BASE)
+	git submodule update --init --recursive $(EPICS_BASE)/.
+
 base-init:  git-msync
 	@git submodule deinit -f $(EPICS_BASE)/
 	git submodule deinit -f $(EPICS_BASE)/
@@ -97,4 +102,4 @@ git-msync:
 	git submodule sync	
 
 
-.PHONY: all epics base modules modules-release clean base-clean modules-clean env base-init sel-base sel-modules git-msync help
+.PHONY: all epics base modules modules-release clean base-clean modules-clean env init base-init sel-base sel-modules git-msync help 

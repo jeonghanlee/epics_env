@@ -63,6 +63,14 @@ modules         Setup only EPICS modules, useful to switch different module vers
 clean           Clean BASE and all modules
 modules-clean   Clean only all modules
 env             Print basic EPICS environment variables
+init            Get EPICS BASE source, mandatory to run it first
+
+epics_env (master)$ make init
+git submodule sync
+Synchronizing submodule url for 'epics-base'
+git submodule init /home/jhlee/epics_env/epics-base
+git submodule update --init --recursive /home/jhlee/epics_env/epics-base/.
+
 
 epics_env (master) $ make env
 EPICS_BASE          : /home/jhlee/epics_env/epics-base
