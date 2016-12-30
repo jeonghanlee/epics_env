@@ -1,26 +1,30 @@
-Simple EPICS Environment
+A Simple and Naive EPICS Environment (SNEE)
 =================
 
 ## Purpose
 
 * To develop a generic way to build an entire EPICS environment in order to make an EPICS environment transparent well to the community.
-* To provide a simple EPICS environment to biginners easily. 
+* To provide an EPICS environment to biginners easily.
+* To provide an independent EPICS environment in order to debug existent EPICS environmets.
 
 ## Limitation
 * Due to lack of my knowledge and some warnings from experts, I am using the simplest model of using submodules which is found in https://git-scm.com/book/en/v2/Git-Tools-Submodules
-
 
 > The simplest model of using submodules in a project would be if you were simply consuming a subproject and wanted to get updates from it from time to time but were not actually modifying anything in your checkout.
 
   So I DO NOT change any sub modules in this branch (work), DO NOT commit my local changes to the original repositories. 
 
+* All source codes and compiled binary files in the source directories
 
 
-## Supported EPICS Base and Modules
+
+## Supported EPICS Modules
+
+### SRC : www.github.com/epics-modules
+
 * autosave
 * ipac
 * devlib2
-* seq (SNCSEQ)
 * iocStats
 * sscan
 * asyn
@@ -31,42 +35,158 @@ Simple EPICS Environment
 * motor
 * mrfioc2
 
+### SRC : www-csr.bessy.de/control/SoftDist/sequencer/repo/branch-2-2
+
+* seq
 
 
-## Fresh Installation 
+## Setup SNEE
 
 
+### Case 1 : Fresh Installation or Change BASE version 
 
-### Step 1 : Clone
-
-```
-git clone https://github.com/jeonghanlee/epics_env
-cd epics_env/
-make init
-```
-
-### Step 2 : Set a specific version of base, and each module
-* For EPICS base : it has no master branch, thus, select specfic version 3.15.4
-* For EPICS modules : [ENTER] or 0 + [ENTER] means that you select the master branch/
-* Recent 10 git tags are shown to be selected
-```
-$ bash epics_env_setup.bash 
-```
-* Recent 5 git tags are shown to be selected
-```
-$ bash epics_env_setup.bash 5
-```
-
-### Step 3 : Building EPICS base, and its modules
-```
-$ make
-```
-
-### EPICS Environment
+Note that if BASE is changed to different version, all modules must be re-compiled according to the BASE.
 
 ```
-$ source setEpicsEnv.bash
+$ git clone https://github.com/jeonghanlee/epics_env
 
+$ cd epics_env
+
+epics_env (master) $ make
+--------------------------------------- 
+Available targets
+--------------------------------------- 
+all             same as 'make epics'
+epics           Setup EPICS Environment
+base            Setup only EPICS BASE, needed to execute modules
+modules         Setup only EPICS modules, useful to switch different module version
+clean           Clean BASE and all modules
+modules-clean   Clean only all modules
+env             Print basic EPICS enviornment variables
+
+epics_env (master) $ make env
+EPICS_BASE          : /home/jhlee/epics_env/epics-base
+EPICS_MODULES       : /home/jhlee/epics_env/epics-modules
+EPICS_APPS          : /home/jhlee/epics_env/epics-Apps
+EPICS_HOST_ARCH     : linux-x86_64
+EPICS_APPS          : /home/jhlee/epics_env/epics-Apps
+
+epics_env (master) $ make epics
+
+...........
+
+>>>> You are entering in : git_selection
+ 0: git src                             master
+ 1: git src                          R3.16.0.1
+ 2: git src                            R3.15.5
+ 3: git src                            R3.15.4
+ 4: git src                            R3.15.3
+ 5: git src                            R3.15.2
+ 6: git src                            R3.15.1
+ 7: git src                          R3.15.0.2
+ 8: git src                          R3.15.0.1
+ 9: git src                         R3.14.12.6
+10: git src                         R3.14.12.5
+11: git src                         R3.14.12.4
+12: git src                         R3.14.12.3
+13: git src                         R3.14.12.2
+14: git src                         R3.14.12.1
+15: git src                           R3.14.12
+16: git src                           R3.14.11
+17: git src                           R3.14.10
+18: git src                            R3.14.9
+19: git src                          R3.14.8.2
+20: git src                          R3.14.8.1
+Select master or one of tags which can be built, followed by [ENTER]: 2
+
+....................
+....................
+
+>>>> You are entering in : select_epics_modules
+./motor
+
+>>>> You are entering in : git_selection
+ 0: git src                             master
+ 1: git src                        synApps_5_8
+ 2: git src                        synApps_5_7
+ 3: git src                        synApps_5_6
+ 4: git src                               R6-9
+ 5: git src                             R6-8-1
+ 6: git src                               R6-8
+ 7: git src                             R6-7-1
+ 8: git src                               R6-7
+ 9: git src                             R6-6-2
+10: git src                             R6-6-1
+11: git src                               R6-6
+12: git src                             R6-5-2
+13: git src                                GIT
+Select master or one of tags which can be built, followed by [ENTER]:
+
+
+..............................
+..............................
+
+
+<<<< You are leaving from select_epics_modules
+make -C /home/jhlee/epics_env/epics-modules
+
+
+```
+
+### Case 2 : Change a Module version
+
+
+```
+$ cd epics_env
+
+epics_env (master) $ make modules
+make -C /home/jhlee/epics_env/epics-modules init
+make[1]: Entering directory '/home/jhlee/epics_env/epics-modules'
+git submodule sync
+Synchronizing submodule url for 'asyn'
+
+..............................
+..............................
+
+>>>> You are entering in : select_epics_modules
+./motor
+
+>>>> You are entering in : git_selection
+ 0: git src                             master
+ 1: git src                        synApps_5_8
+ 2: git src                        synApps_5_7
+ 3: git src                        synApps_5_6
+ 4: git src                               R6-9
+ 5: git src                             R6-8-1
+ 6: git src                               R6-8
+ 7: git src                             R6-7-1
+ 8: git src                               R6-7
+ 9: git src                             R6-6-2
+10: git src                             R6-6-1
+11: git src                               R6-6
+12: git src                             R6-5-2
+13: git src                                GIT
+Select master or one of tags which can be built, followed by [ENTER]:
+
+
+
+
+```
+
+
+
+
+### Flexiable EPICS Environment
+
+By default, no change in shell environment, one should source its environmet manually via
+
+```
+$ . epics_env/setEpicsEnv.bash
+```
+
+Then, other EPICS commands are alive in that console only.
+
+```
 $ makeBaseApp.pl 
 Usage:
 <base>/bin/<arch>/makeBaseApp.pl -h
@@ -80,38 +200,12 @@ Usage:
 where
  app  Application name (the created directory will have "App" appended)
  ioc  IOC name (the created directory will have "ioc" prepended)
+ 
+$ caget
+No pv name specified. ('caget -h' for help.)
 
 $ which caget
 /home/jhlee/epics_env/epics-base/bin/linux-x86_64/caget
-```
-
-
-## Change Modules Version
-
-
-### Step 1 : Deinit, and init
-
-```
-cd epics_env/
-make modules-init
-
-```
-
-### Step 2 : Set a specific version of base, and each module
-* For EPICS base : it has no master branch, thus, select specfic version 3.15.4
-* For EPICS modules : [ENTER] or 0 + [ENTER] means that you select the master branch/
-* Recent 10 git tags are shown to be selected
-```
-$ bash epics_env_setup.bash 
-```
-* Recent 5 git tags are shown to be selected
-```
-$ bash epics_env_setup.bash 5
-```
-
-### Step 3 : Building EPICS base, and its modules
-```
-$ make
 ```
 
 

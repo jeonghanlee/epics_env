@@ -60,6 +60,7 @@ env:
 	@echo "EPICS_MODULES       : "$(EPICS_MODULES)
 	@echo "EPICS_APPS          : "$(EPICS_APPS)
 	@echo "EPICS_HOST_ARCH     : "$(EPICS_HOST_ARCH)
+	@echo "EPICS_APPS          : "$(EPICS_APPS)
 
 # # sed needs $$ instead of $ in Makefile
 # init: git-msync
