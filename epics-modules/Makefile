@@ -103,7 +103,6 @@ $(M_DIRS):
 	$(MAKE) -C $@ clean
 
 init: git-msync
-	git submodule sync	
 	@git submodule deinit -f $(EPICS_MODULES)/
 	git submodule deinit -f $(EPICS_MODULES)/
 	sed -i '/submodule/,$$d'  $(TOP)/.git/config	
