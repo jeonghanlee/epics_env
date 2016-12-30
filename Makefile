@@ -43,7 +43,7 @@ clean: modules-clean base-clean
 base-clean:
 	$(MAKE) -C $(EPICS_BASE) clean
 
-# In the case that modules-relase never be executed before,
+# In the case that modules-release never be executed before,
 # it will reduce the error messages during make
 
 ## Clean only all modules
@@ -54,7 +54,7 @@ modules-clean: modules-release
 modules-release: 
 	$(MAKE) -C $(EPICS_MODULES) release
 
-## Print basic EPICS enviornment variables
+## Print basic EPICS environment variables
 env:
 	@echo "EPICS_BASE          : "$(EPICS_BASE)
 	@echo "EPICS_MODULES       : "$(EPICS_MODULES)

@@ -4,8 +4,8 @@ A Simple and Naive EPICS Environment (SNEE)
 ## Purpose
 
 * To develop a generic way to build an entire EPICS environment in order to make an EPICS environment transparent well to the community.
-* To provide an EPICS environment to biginners easily.
-* To provide an independent EPICS environment in order to debug existent EPICS environmets.
+* To provide an EPICS environment to beginners easily.
+* To provide an independent EPICS environment in order to debug existent EPICS environments.
 
 ## Limitation
 * Due to lack of my knowledge and some warnings from experts, I am using the simplest model of using submodules which is found in https://git-scm.com/book/en/v2/Git-Tools-Submodules
@@ -15,7 +15,7 @@ A Simple and Naive EPICS Environment (SNEE)
   So I DO NOT change any sub modules in this branch (work), DO NOT commit my local changes to the original repositories. 
 
 * All source codes and compiled binary files in the source directories
-
+* By default, selection procedure excludes alpha, beta, pre, and release candidate versions. If one needs that excluded version, one should change epics_env_setup.bash.
 
 
 ## Supported EPICS Modules
@@ -62,7 +62,7 @@ base            Setup only EPICS BASE, needed to execute modules
 modules         Setup only EPICS modules, useful to switch different module version
 clean           Clean BASE and all modules
 modules-clean   Clean only all modules
-env             Print basic EPICS enviornment variables
+env             Print basic EPICS environment variables
 
 epics_env (master) $ make env
 EPICS_BASE          : /home/jhlee/epics_env/epics-base
@@ -178,7 +178,7 @@ Select master or one of tags which can be built, followed by [ENTER]:
 
 ### Flexiable EPICS Environment
 
-By default, no change in shell environment, one should source its environmet manually via
+By default, no change in shell environment, one should source its environment manually via
 
 ```
 $ . epics_env/setEpicsEnv.bash
