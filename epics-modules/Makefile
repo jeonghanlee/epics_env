@@ -102,7 +102,7 @@ clean: $(M_DIRS)
 $(M_DIRS):
 	$(MAKE) -C $@ clean
 
-init: git-msync
+init: 
 	@git submodule deinit -f $(EPICS_MODULES)/
 	git submodule deinit -f $(EPICS_MODULES)/
 	sed -i '/submodule/,$$d'  $(TOP)/.git/config	
@@ -120,9 +120,11 @@ dirs:
 
 
 
-# In case, .gitmodules may be modified. 
-git-msync:
-	git submodule sync	
+# # In case, .gitmodules may be modified.
+# # 
+# git-msync:
+# 	git submodule sync
+
 
 
 .PHONY: all clean release dirs $(M_DIRS) init git-msync
