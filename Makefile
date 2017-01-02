@@ -24,7 +24,7 @@ help:
 all: epics  
 
 ## Setup EPICS Environment
-epics: base modules 
+epics: init base modules 
 
 ## Setup only EPICS BASE, needed to execute modules
 base: sel-base
@@ -55,12 +55,14 @@ modules-release:
 	$(MAKE) -C $(EPICS_MODULES) release
 
 ## Print basic EPICS environment variables
-env: 
+env:
+	@echo ""
 	@echo "EPICS_BASE          : "$(EPICS_BASE)
 	@echo "EPICS_MODULES       : "$(EPICS_MODULES)
 	@echo "EPICS_APPS          : "$(EPICS_APPS)
 	@echo "EPICS_HOST_ARCH     : "$(EPICS_HOST_ARCH)
-	@echo "EPICS_APPS          : "$(EPICS_APPS)
+	@echo ""
+#	@echo "EPICS_APPS          : "$(EPICS_APPS)
 
 # # sed needs $$ instead of $ in Makefile
 # init: git-msync
