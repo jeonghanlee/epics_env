@@ -24,7 +24,7 @@ help:
 all: epics  
 
 ## Setup EPICS Environment
-epics: init base modules 
+epics: base modules 
 
 ## Setup only EPICS BASE, needed to execute modules
 base: sel-base
