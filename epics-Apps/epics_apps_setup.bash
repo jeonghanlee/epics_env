@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #  Copyright (c) 2016 Jeong Han Lee
-#  Copyright (c) 2016 European Spallation Source ERIC
+#  Copyright (c) 2016 - present European Spallation Source ERIC
 #
 #  The program is free software: you can redistribute
 #  it and/or modify it under the terms of the GNU General Public License
@@ -235,6 +235,7 @@ EOF
 
 git_select "https://github.com/jeonghanlee" "danfysik-mps8500"
 git_select "https://github.com/jeonghanlee" "gconpi"
+git_select "https://github.com/jeonghanlee" "snmp3"
 #git_select "https://github.com/jeonghanlee" "evg220"
 
 exit
