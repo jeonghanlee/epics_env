@@ -238,7 +238,7 @@ git submodule add https://github.com/epics-modules/busy epics-modules/busy
 
 ## Issues
 
-* ESS CentOS 7.1 1503 has no re2c, so manual installation is needed in order to use SNCSEQ. 
+* ESS CentOS 7 has no re2c, so manual installation is needed in order to use SNCSEQ. 
 
 ```
 []$ git clone https://github.com/skvadrik/re2c

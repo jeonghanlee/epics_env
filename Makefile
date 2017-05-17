@@ -64,17 +64,13 @@ env:
 	@echo ""
 #	@echo "EPICS_APPS          : "$(EPICS_APPS)
 
-# # sed needs $$ instead of $ in Makefile
-# init: git-msync
-# 	@git submodule deinit -f .
-# 	git submodule deinit -f .
-# 	sed -i '/submodule/,$$d'  $(TOP)/.git/config	
-# 	git submodule init 
-# 	git submodule update --init --recursive .
 
-# #
+# Exclude EPICS_MODULES
+M_DIRS:=$(sort $(dir $(wildcard $(EPICS_MODULES)/*/.)))
+
+#
 ## Get EPICS BASE source, mandatory to run it first
-init:  git-msync
+init:  
 	git submodule init $(EPICS_BASE)
 	git submodule update --init --recursive $(EPICS_BASE)/.
 
@@ -85,13 +81,26 @@ base-init:  git-msync
 	git submodule init $(EPICS_BASE)
 	git submodule update --init --recursive $(EPICS_BASE)/.
 
+
+# CentOS 7 git doesn't allow to run the following commands in EPICS_MODULES
+#
+modules-init: git-msync
+	@git submodule deinit -f $(EPICS_MODULES)/
+	git submodule deinit -f $(EPICS_MODULES)/
+	sed -i '/submodule/,$$d'  $(TOP)/.git/config	
+#	$(foreach dir, $(M_DIRS), git rm --cached $(dir))
+	git submodule init  $(EPICS_MODULES)/
+	git submodule update --init --remote --recursive $(EPICS_MODULES)/
+
+
+
 # Git init base, and select a version (tag) of BASE
 sel-base: base-init
 	$(TOP)/epics_env_setup.bash base
 
 # Git init modules, and select a version (tag) of each module
-sel-modules:
-	$(MAKE) -C $(EPICS_MODULES) init	
+sel-modules: modules-init
+#	$(MAKE) -C $(EPICS_MODULES) init	
 	$(TOP)/epics_env_setup.bash modules
 
 #sel-all: init
@@ -104,4 +113,11 @@ git-msync:
 	git submodule sync	
 
 
-.PHONY: all epics base modules modules-release clean base-clean modules-clean env init base-init sel-base sel-modules git-msync help 
+dirs:
+	@echo $(M_DIRS) || true
+
+
+
+
+
+.PHONY: all epics base modules modules-release clean base-clean modules-clean env init base-init modules-init sel-base sel-modules git-msync help 
