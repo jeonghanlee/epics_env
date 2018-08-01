@@ -1,5 +1,11 @@
-A Simple and Naive EPICS Environment (SNEE)
+## Please check the new repositories, which provides the better way to setup the EPICS V7 and its modules. 
+
+* https://github.com/jeonghanlee/epics_builder
+* https://github.com/jeonghanlee/epics_manifest
+
 =================
+
+Archived Repository : A Simple and Naive EPICS Environment (SNEE) 
 
 ## Purpose
 
